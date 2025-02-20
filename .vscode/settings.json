@@ -8,5 +8,8 @@
     },
     "github.copilot.enable": {
         "*": false
-    }
+    },
+    "r.sessionWatcher": true,
+    "r.rterm.windows": "C:\\Program Files\\R\\R-4.3.2\\bin\\R.exe", // Adjust the path to your R installation
+    "r.lsp.debug": true
 }

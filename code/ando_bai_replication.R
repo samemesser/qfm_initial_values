@@ -94,16 +94,9 @@ true_y <- txb + true_fl + qnorm(tau, 0, e_var)
 
 obs_y <- xb + obs_fl + qnorm(u_, 0, e_var)
 
-# sum(true_y - TXBFL)
-# sum(obs_y - AY)
-
-###########
-# Above is correct
-###########
-
-#===================================#
-#Estimation
-#===================================#
+############################################
+# Estimation
+############################################
 # AB skip the data-driven method for selecting n_fac because the number
 # is known from the DGP
 
@@ -136,7 +129,7 @@ for (j in 1:n_asset) {
   xb_est[, j] <- cbind(1, x) %*% b_est[, j]
 }
 
-# Do PCA + QR rotation to get starting value for F and L
+# Do PCA to get starting value for F and L
 z_res <- obs_y - xb_est
 vec <- eigen(z_res %*% t(z_res))$vectors
 f_est <- sqrt(t_count) * vec[, 1:n_fac]
@@ -176,8 +169,7 @@ for (ITE in 1:100) {
       b_est[, j]
     fl_est[, j] <- f_est %*% l_est[j, ]
   }
-  
-  browser()
+
 
   # Check for convergence
   conv_crit <- sum((b_est_old - b_est)^2) / (length(b_est)) +
