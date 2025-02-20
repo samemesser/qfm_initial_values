@@ -38,8 +38,8 @@ y_it <- t(betas) %*% alphas + gamma_build * vs
 # It is also worth considering the rotation used in Ando and Bai (2020).
 
 ## Here choose quantile of interest and number of factors
-qtl <- 0.50
-k_tau <- 1
+qtl <- 0.25
+k_tau <- 2
 ################################################################################
 # General strategy is as follows:
 # 1) Estimate qr of y on 1 to get intercept starting value
@@ -82,7 +82,7 @@ fl_est_old <- fl_est
 ################################################################################
 ## Estimation Parameters
 conv_crit <- Inf
-tol <- 1e-3
+tol <- 1e-6
 iter <- 0
 maxiter <- 100
 
@@ -137,8 +137,9 @@ while (conv_crit > tol) {
     xb_est[, j] <-  x_obs %*% b_est[, j]
     fl_est[, j] <- f_est %*% l_est[j, ]
   }
+  y_fit <- xb_est + fl_est
   # Get value of objective function
-  obj_val <- get_check(y_obs, fl_est, qtl)
+  obj_val <- get_check(y_obs, y_fit, qtl)
 
   # Check for convergence
   conv_crit <- sum((b_est_old - b_est)^2) / (length(b_est)) +
