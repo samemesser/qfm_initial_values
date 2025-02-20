@@ -1,0 +1,12 @@
+{
+    "[r]": {
+        "editor.quickSuggestions": {
+            "comments": false,
+            "strings": true,
+            "other": true
+        }
+    },
+    "github.copilot.enable": {
+        "*": false
+    }
+}
