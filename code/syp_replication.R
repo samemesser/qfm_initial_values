@@ -11,9 +11,9 @@ set.seed(8675309)
 
 ################################################################################
 ## Data Generating Process Parameters
-n_ <- 38
-t_ <- 535
-scale_factor_variance <- 0
+n_ <- 50
+t_ <- 200
+scale_factor_variance <- 1
 error_variance <- 1
 ################################################################################
 ## DGP
@@ -82,7 +82,7 @@ fl_est_old <- fl_est
 ################################################################################
 ## Estimation Parameters
 conv_crit <- Inf
-tol <- 1e-6
+tol <- 1e-3
 iter <- 0
 maxiter <- 100
 
@@ -152,3 +152,12 @@ while (conv_crit > tol) {
       ", Objective Function Value: ", obj_val,
       ", Convergence Criterion: ", conv_crit, "\n", sep = "")
 }
+
+################################################################################
+## Compare to true factors
+abs(cor(f_est[, 1], t(betas)))
+abs(cor(f_est[, 2], t(gammas)))
+
+## Rotation-agnostic measure of fit
+summary(lm(t(betas) ~ f_est))$r.squared
+summary(lm(t(gammas) ~ f_est))$r.squared
