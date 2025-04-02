@@ -53,14 +53,7 @@ lit/
  
 # latex
 *.aux
-*.lof
 *.log
-*.lot
+*.synctex.gz
+*.fdb_latexmk
 *.fls
-*.out
-*.toc
-*.fmt
-*.fot
-*.cb
-*.cb2
-.*.lb

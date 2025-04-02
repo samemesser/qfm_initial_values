@@ -1,5 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1743602755.1405 "c:/Users/samel/Dropbox/PhD/qfm_initial_values/tex/location_scale_notes.tex" "location_scale_notes.pdf" "location_scale_notes" 1743602757.03157 0
+["pdflatex"] 1743607597.06556 "c:/Users/samel/Dropbox/PhD/qfm_initial_values/tex/location_scale_notes.tex" "location_scale_notes.pdf" "location_scale_notes" 1743607598.62408 0
+  "../out/sagner_t2.png" 1743603521 89047 bdbe8b3ec29fc19f33a51a762854b2df ""
   "C:/Users/samel/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1743601893 83717 cc07536b745773b2b0880ff8d7925612 ""
   "C:/Users/samel/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1668471789 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/samel/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1668471791 684 3a51bd4fd9600428d5264cf25f04bb9a ""
@@ -170,9 +171,9 @@
   "C:/Users/samel/AppData/Local/Programs/MiKTeX/tex/latex/tools/array.sty" 1654690828 12694 4770336659ba563be5de2e0739d61ddc ""
   "C:/Users/samel/AppData/Local/Programs/MiKTeX/tex/latex/tools/enumerate.sty" 1654690828 3468 46ba9177f0f0a79fe79845d3eebff113 ""
   "C:/Users/samel/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "c:/Users/samel/Dropbox/PhD/qfm_initial_values/tex/location_scale_notes.tex" 1743107173 3088 55397ba736bcd8d44d0395d00d8a34f9 ""
-  "location_scale_notes.aux" 1743602756 146 578390dd4adac4caddd134ff040d8016 "pdflatex"
-  "location_scale_notes.tex" 1743107173 3088 55397ba736bcd8d44d0395d00d8a34f9 ""
+  "c:/Users/samel/Dropbox/PhD/qfm_initial_values/tex/location_scale_notes.tex" 1743607592 3669 497923dff7033c43dfafecac8efaa0f0 ""
+  "location_scale_notes.aux" 1743607598 362 1472997c97da45e2caf806f96100fc26 "pdflatex"
+  "location_scale_notes.tex" 1743607592 3669 497923dff7033c43dfafecac8efaa0f0 ""
   (generated)
   "location_scale_notes.aux"
   "location_scale_notes.log"

@@ -46,6 +46,19 @@
 
 \section{Location-Scale Model Notes}
 
+I consider the following DGP:
+
+\begin{equation*}
+	y_{it} = \alpha_i\beta_t + \eta_i\gamma_te_{it}
+\end{equation*}
+
+We require that $\eta_t\gamma_t > 0$, so we will draw them from the $\chi^2$ distribution. All together we have:
+
+\[
+	\alpha_i \sim \mathcal{N}(0, 1); \quad \beta_t \sim \mathcal{N}(0, 1); \quad \eta_i \sim \chi^2(1); \quad \gamma_t \sim \chi^2(1); \quad e_{it} \sim \mathcal{N}(0,1)
+\]
+
+
 Suppose $y_{it}$ is a scalar random variable, $\alpha_{i}, \beta_t, \gamma_t$, and $\eta_i$ are random vectors, and $e_{it}$ are i.i.d., in time and cross-section, and independent of $y, \alpha, \beta, \gamma,$ and $\eta_i$. Let $F$ be the cdf of $e_{it}$, and $Q(\tau )$ its $\tau $-th quantile. Suppose the DGP\ is
 
 %
@@ -73,6 +86,14 @@ We consider the DGP as above with $\alpha_i, \beta_t, w_i, x_t$ all i.i.d. $\mat
 \end{align*}
 
 We then generate data according to this DGP for $T = 1000, N = 100$. The average $R^2$ is reported in table \ref{table1}. 
+
+\begin{figure}
+	\centering
+    \includegraphics[width=0.9\linewidth]{../out/sagner_t2.png}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+
 
 \end{document}
 
