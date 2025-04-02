@@ -134,7 +134,7 @@ fit_qfm <- function(data, qtl, k_tau) {
 
 qtl <- c(0.25, 0.50, 0.75)
 k_tau <- 2
-n_sims <- 10
+n_sims <- 100
 
 
 # Set of T and N over which to run simulation
@@ -296,3 +296,13 @@ stopCluster(cl)
 # mean(l_step[, 2])
 
 View(sim_results)
+
+agg_results <- as.data.frame(sim_results) %>%
+  rename(n_ = V1, t_ = V2, qtl = V3, r2_ff = V4, r2_sf = V5, iter = V6) %>%
+  group_by(qtl) %>%
+  summarise(mean_cor_ff = mean(r2_ff),
+            mean_cor_sf = mean(r2_sf),
+            long_converge = mean((iter > 100) & (iter < 1000)),
+            no_converge = mean(iter == 1000),
+            prop_gt_50 = mean(r2_sf > 0.5),
+            prop_ff_wrong = mean(r2_ff < 0.9))
