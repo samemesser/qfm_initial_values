@@ -1,0 +1,206 @@
+%-------------------------------------------------------------------------------
+% mystyle.sty
+% Document preamble
+%-------------------------------------------------------------------------------
+
+% PACKAGES
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{appendix}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{datetime}
+\usepackage{dcolumn}
+\usepackage{enumitem}
+\usepackage{epsfig}
+\usepackage[update,prepend]{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{float}
+%\usepackage[T1]{fontenc}
+\usepackage[stable]{footmisc}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{indentfirst}
+\usepackage[latin9]{inputenc}
+\usepackage{latexsym}
+\usepackage{multirow}
+\usepackage[longnamesfirst]{natbib}
+\usepackage{setspace}
+%\usepackage{sectsty}
+\usepackage{subcaption}
+\usepackage{subfiles} % to compile sections of a document
+\usepackage{titlesec}
+\usepackage{url}
+\usepackage{xr}
+\usepackage{xr-hyper}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{threeparttable}
+% fix too wide table
+\usepackage{adjustbox}
+\usepackage{longtable}
+\usepackage{yhmath}
+
+
+
+
+
+
+% SETTINGS
+\setcounter{MaxMatrixCols}{30}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem*{problem}{Problem}
+
+\theoremstyle{remark}
+\newtheorem{assumption}{Assumption}
+\newtheorem{case}{Case}
+\newtheorem{example}{Example}
+\newtheorem*{note}{Note}
+\newtheorem*{remark}{Remark}
+
+\iffalse
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\fi
+\renewcommand{\cite}{\citeN}
+
+\captionsetup{width=0.8\textwidth}
+\captionsetup[figure]{labelsep=colon}%{labelsep=space}
+\captionsetup[figure]{font=small}
+\captionsetup[table]{labelsep=colon}% {labelsep=newline}
+\renewcommand{\figurename}{Figure}%{FIGURE}
+\renewcommand{\thetable}{\Roman{table}}
+\renewcommand{\tablename}{Table}%{ TABLE }
+
+\newcolumntype{d}[1]{D{.}{.}{#1} }
+
+\newdateformat{mydate}{\monthname[\THEMONTH] \THEYEAR}
+
+\definecolor{linkc}{rgb}{0,0,1}
+\definecolor{citec}{rgb}{0,0,0}%{0,0,1}
+\definecolor{bcolor}{rgb}{1,1,1}
+
+\def\citeapos#1{\citeauthor{#1}'s (\citeyear{#1})}
+
+\hypersetup{
+ % bookmarks = true,
+  colorlinks= true,
+  linkcolor = linkc,
+  filecolor = linkc,
+  urlcolor  = linkc,
+  citecolor = citec,
+}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\floatpagefraction}{.95}
+
+\def\ie{{\sl i.e.,\ }}
+\def\eg{{\sl e.g.,\ }}
+\def\var{{\rm var}}
+\def\cov{{\rm cov}}
+\def\tr{{\rm tr}}
+
+\def\blue{\color{blue}}
+\def\red{\color{red}}
+\def\purple{\color{purple}}
+\def\green{\color{green}}
+\def\white{\color{white}}
+\def\gray{\color{gray}}
+\def\black{\color{black}}
+
+\newcommand{\appendixpagenumbering}{
+  \break
+  \pagenumbering{arabic}
+  \renewcommand{\thepage}{\thesection-\arabic{page}}
+}
+
+\sloppy
+
+%Reading in Parsed Summary Table
+% Making fancier tables
+\usepackage{booktabs}
+% Table and Figure captions
+\usepackage{caption}
+\usepackage{subcaption}
+% Allows use of tablenotes
+\usepackage{threeparttable}
+% Change note font to footnote size
+\usepackage{etoolbox}
+\appto\TPTnoteSettings{\footnotesize}
+
+% table formatting with estout - all of the following is from Jorg Weber https://www.jwe.cc/2012/03/stata-latex-tables-estout/
+
+\newcommand{\sym}[1]{\rlap{#1}}% Thanks to David Carlisle
+
+\let\estinput=\input% define a new input command so that we can still flatten the document
+
+\newcommand{\estwide}[3]{
+\vspace{.75ex}{
+\begin{tabular*}
+{\textwidth}{@{\hskip\tabcolsep\extracolsep\fill}l*{#2}{#3}}
+\toprule
+\estinput{#1}
+\bottomrule
+\addlinespace[.75ex]
+\end{tabular*}
+}
+}
+
+\newcommand{\estauto}[3]{
+\vspace{.75ex}{
+\begin{tabular}{l*{#2}{#3}}
+\toprule
+\estinput{#1}
+\bottomrule
+\addlinespace[.75ex]
+\end{tabular}
+}
+}
+
+% Allow line breaks with \\ in specialcells
+\newcommand{\specialcell}[2][c]{%
+\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+% *****************************************************************
+% Custom sub-captions
+% *****************************************************************
+% Note/Source/Text after Tables
+\newcommand{\figtext}[1]{
+\vspace{0.3ex}
+\captionsetup{justification=justified,font=footnotesize}
+\caption*{\hspace{-190pt}\hangindent=1.5em #1}
+}
+\newcommand{\fignote}[1]{\figtext{\emph{Note:~}~#1}}
+
+\newcommand{\figsource}[1]{\figtext{\emph{Source:~}~#1}}
+
+% Add significance note with \starnote
+\newcommand{\starnote}{\figtext{* p $<$ 0.1, ** p $<$ 0.05, *** p $<$ 0.01. Standard errors in parentheses.}}
+
+% *****************************************************************
+% siunitx
+% *****************************************************************
+\usepackage{siunitx} % centering in tables
+\sisetup{
+detect-mode,
+tight-spacing = true,
+group-digits = false ,
+input-signs = ,
+input-symbols = ( ) [ ] - + *,
+input-open-uncertainty = ,
+input-close-uncertainty = ,
+table-align-text-post = false
+}

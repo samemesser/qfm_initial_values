@@ -1,25 +1,71 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{xcolor}
-\usepackage{authblk}
-\usepackage{graphicx}
-\usepackage{enumerate}
-%\usepackage{enumitem}
-\usepackage{mathrsfs}
-\usepackage{amssymb}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{float}
-\usepackage{bbm}
-\usepackage{geometry}
-\usepackage{amsthm}
-%\usepackage{subcaption}
-\usepackage{istgame}
-\usepackage{multirow,array}
-\usepackage{sgame}
+\documentclass[12pt]{article}
+ 
+\usepackage{afterpage,amssymb,amsmath,amsfonts,eurosym,geometry,
+ulem,graphicx,caption,subcaption,color,setspace,sectsty,comment,fnpct,caption,natbib,array,hyperref,float,pdfpages,fancyhdr,pdflscape,amsmath,mathtools,fancyvrb}
+\usepackage{xurl}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[bottom]{footmisc}
+\usepackage{booktabs}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{setspace}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{color}
+	\definecolor{maroon}{RGB}{128,0,0}
+	\definecolor{navy}{RGB}{0,0,165}
+	\definecolor{lb}{RGB}{150,165,190}
+    \definecolor{dg}{RGB}{15,92,18}
+    \definecolor{purple}{RGB}{145,40,190}
+\usepackage{hyperref}
+\hypersetup{
+     colorlinks = true,
+     citecolor = navy,
+     linkcolor = navy,
+     urlcolor=navy
+}
 
+\fancypagestyle{appstyle}{
+ \fancyhf{}
+ \fancyfoot[C]{\thepage}
+ \fancyhead[C]{\textit{Online Appendix}}
+}
+  
+\normalem
+\newcommand{\source}[1]{\\ \raggedright {#1}}
+\geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
+ 
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\usepackage[font={large,sc}]{caption}
+\usepackage[sc]{mathpazo}
+\usepackage[T1]{fontenc}
+\VerbatimFootnotes 
+
+\setlength{\tabcolsep}{8pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.5} 
+%\newcolumntype{G}{@{\extracolsep{12pt}}c@{\extracolsep{12pt}}}%
 
 \title{QFM Exploration Notes}
 \author{}
@@ -38,7 +84,6 @@
 \DeclareMathOperator*{\argmax}{\text{arg} \max}
 \DeclareMathOperator*{\argmin}{\text{arg} \min}
 
-
 \begin{document}
 
 \newgeometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
@@ -52,54 +97,68 @@ I consider the following DGP:
 	y_{it} = \alpha_i\beta_t + \eta_i\gamma_te_{it}
 \end{equation*}
 
-We require that $\eta_t\gamma_t > 0$, so we will draw them from the $\chi^2$ distribution. All together we have:
+\noindent We require that $\eta_t\gamma_t > 0$, so we will draw them from the $\chi^2$ distribution. All together we have:
 
 \[
 	\alpha_i \sim \mathcal{N}(0, 1); \quad \beta_t \sim \mathcal{N}(0, 1); \quad \eta_i \sim \chi^2(1); \quad \gamma_t \sim \chi^2(1); \quad e_{it} \sim \mathcal{N}(0,1)
 \]
 
-
-Suppose $y_{it}$ is a scalar random variable, $\alpha_{i}, \beta_t, \gamma_t$, and $\eta_i$ are random vectors, and $e_{it}$ are i.i.d., in time and cross-section, and independent of $y, \alpha, \beta, \gamma,$ and $\eta_i$. Let $F$ be the cdf of $e_{it}$, and $Q(\tau )$ its $\tau $-th quantile. Suppose the DGP\ is
-
-%
-\begin{equation*}
-	y_{it}= \alpha_i^{\prime }\beta_t +\eta_i^{\prime}\gamma_te_{it}.
-\end{equation*}
-%
-Assume $\eta_i^{\prime}\gamma_t$ is always positive, then the conditional quantile function is
+In general, we let $F$ be the cdf of $e_{it}$. Then the conditional quantile function is:
 
 %
 \begin{equation*}
-	Q_{\tau }(y_{it}|\alpha_i, \beta_t, \eta_i ^{\prime}\gamma_t)=\alpha_i^{\prime}\beta_t + \eta_i^{\prime}\gamma_t F^{-1}(\tau)= \alpha_i^{\prime}\beta_t + \eta_i^{\prime}\gamma_t Q(\tau)
+	Q_{\tau }(y_{it}|\alpha_i, \beta_t, \eta_i\gamma_t)=\alpha_i\beta_t + \eta_i\gamma_t F^{-1}(\tau)= \alpha_i\beta_t + \eta_i\gamma_t Q(\tau)
 \end{equation*}
 %
 
-This is what the QPC algorithm estimates, and so with a two-factor model the factors estimated should*** span the same space as $\beta_t$ and $\gamma_t$. Then a regression the true $\gamma_t$ on $\hat{\beta}_t + \hat{\gamma}_t$ should have a high $R^2$. This is importantly only true if the estimated $\hat{\gamma}_t$ is actually converging to the true one. The estimated loadings should be an estimate of the true loading on the first factor $\hat{\alpha}_i$ and the $\tau$-th quantile of $F$. 
+We call the estimates of this conditional quantile function from the QPC algorithm $\hat{\alpha}, \hat{\beta}, \hat{\eta}, \hat{\gamma}$. If the algorithm converges to the true values (as captured by the common component), we would expect that the estimated factors span the same space as the true ones. Because the rotation of the factors is not identified, we need to measure this in a way that is invariant to rotation. To do so, we consider the $R^2$ of the following regressions:
 
-For simplicity, we will consider $e_{it} \sim \mathcal{N}(0, 1)$. Then for estimates at the median, we should expect that there is only one factor. For estimates at $\tau = 0.25$, we should expect that the mean value of the second estimated factor is  $\Phi^{-1}(0.25) = -0.67$.
+\begin{equation*}
+	\beta = a + b_1\hat{\beta} + b_2\hat{\gamma}; \quad \gamma = c + d_1\hat{\gamma} + d_2\hat{\gamma};
+\end{equation*}
 
-We consider the DGP as above with $\alpha_i, \beta_t, w_i, x_t$ all i.i.d. $\mathcal{N}(0, 1)$. To satisfy $\eta_i^{\prime}\gamma_t > 0$, we define 
+If the algorithm is converging properly, we would expect high values of $R^2$ in each of these regressions.
 
-\begin{align*} 
-	\eta_i  &= e^{w_i} \\
-	\gamma_t &= e^{x_t} 
-\end{align*}
+Note that under this DGP, beacuse $e_it$ is $\mathcal{N}(0, 1)$ we have that at the median $(\tau = 0.50)$ there will only be one factor.  
 
-We then generate data according to this DGP for $T = 1000, N = 100$. The average $R^2$ is reported in table \ref{table1}. 
+For now, I will consider the errors-in-variables rotation, where with $k_{\tau}$ factors, the factor loadings are restricted such that $\Lambda = \left[I_{k_{\tau}} \space \Lambda_2\right]^{\prime}$. This is the most simple computationally, though there are others I could consider from \citet{BaiNg2013}.
 
-\begin{figure}
-	\centering
-    \includegraphics[width=0.9\linewidth]{../out/sagner_t2.png}
-    \caption{Caption}
-    \label{fig:enter-label}
-\end{figure}
+For now, I want to see how this DGP behaves and wether we can do any estimation consistently. My target is to replicate table 2 from \citet{Sagner2019}, shown in Figure \ref{fig:sagner_t2}.
 
+\afterpage{%
+    \clearpage% Flush earlier floats (otherwise order might not be correct)
+    \thispagestyle{empty}% empty page style (?)
+    \begin{landscape}% Landscape page
+        \begin{figure}[ht]
+            \centering
+            \caption{}
+            \label{fig:sagner_t2}
+            \includegraphics[width=0.9\linewidth]{../out/sagner_t2.png}
+        \end{figure}
+    \end{landscape}
+    \clearpage% Flush page
+}
+
+I will not report PC estimates. In addition to the mean $R^2$ values for both the first and second factor, I will include the proportion of simulations where the process took a long time to converge ($> 100$ iterations), where it didn't converge at all (not converged at $1000$ iterations), the proportion of simulations where the $R^2$ for the second factor is $> 0.5$, and the proportion of simulations where the $R^2$ of the first factor is $< 0.9$. For small $N$ and $T$ this last value may be sizable, but for larger $N$ and $T$ a large value of this proportion is concerning as it implies that the first factor is not being estimated consistently.
+
+I want to first check that my estimation procedure is working correctly. To do so, I will consider 2 simple DGPs:
+
+\begin{align}
+    y_{it} &= \alpha_i\beta_t + e_{it} \label{eq:dgp1} \\ 
+    y_{it} &= \alpha_i\beta_t + \eta_i\gamma_t + e_{it} \label{eq:dgp2}
+\end{align}
+
+\noindent These DGPs are simple location models, and so we should expect a good fit for both the one factor case (Equation \ref{eq:dgp1}) and the two factor case (Equation \ref{eq:dgp2}). Results of a small simulation study are reported in. 
+
+
+\pagebreak \newpage
+\singlespacing
+%\setlength \bibsep{0pt}
+\bibliographystyle{harvard}
+%\bibliographystyle{humannat}
+\bibliography{literature}
 
 \end{document}
-
-
-
-
 
 
 
