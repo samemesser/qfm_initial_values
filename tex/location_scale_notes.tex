@@ -150,6 +150,27 @@ I want to first check that my estimation procedure is working correctly. To do s
 
 \noindent These DGPs are simple location models, and so we should expect a good fit for both the one factor case (Equation \ref{eq:dgp1}) and the two factor case (Equation \ref{eq:dgp2}). Results of a small simulation study are reported in. 
 
+\clearpage
+
+Now that the simulation is behaving as anticipated, I will explore the question of initial values. For this study, I consider the following DGP:
+
+\begin{equation}
+    y_{it} = \alpha_i\beta_t + \eta_i\gamma_te_{it} \label{eq:dgp3}
+\end{equation}
+
+Where $\eta_i, \gamma_t \sim \chi^2_1$ to satisfy $\eta_i\gamma_t > 0$. I fit a QFM using the same procedure as before, but with a change in the initialization step. Instead of beginning with PCA to guess the initial values, I add noise from a $\mathcal{N}(0, 1)$ to the initial PCA estimate. This is then rotated according to the rotation I have used. The model is fit from these new initial values, and some interesting patterns appear. Consider the example in table \ref{tab:ivdiff_results}
+
+\begin{table}[ht]
+    \begin{center}
+        \caption{QFM Fits With Different Noise}
+        \label{tab:ivdiff_results}
+        \scalebox{0.9}{
+            \input{../out/ivdiff_results.tex}
+        }
+    \end{center}
+\end{table}
+
+
 
 \pagebreak \newpage
 \singlespacing

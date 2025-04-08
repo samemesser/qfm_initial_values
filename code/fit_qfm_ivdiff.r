@@ -67,8 +67,10 @@ fit_qfm_ivdiff <- function(data, qtl, k_tau, f_init, l_init, tol, maxiter, verbo
       cat("Iteration ", iter, ", Convergence Criterion: ", diff, ", Objective Function Value: ", obj_val, "\n", sep = "") #nolint
     }
   }
+  estimate <- f_step %*% t(l_step)
+  obj_val <- get_check(data, estimate, qtl)
   # Returns list, first value is matrix of estimated factors,
   # second is matrix of estimated loadings,
   # third is number of iterations required
-  list(f_hat = f_step, l_hat = l_step, iter = iter)
+  list(f_hat = f_step, l_hat = l_step, iter = iter, obj_val = obj_val)
 }
