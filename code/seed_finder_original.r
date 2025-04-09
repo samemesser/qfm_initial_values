@@ -62,7 +62,7 @@ for (i in seq_along(seeds_to_test)) {
   # Print results
   cat("Converged in ", fit_model[[3]], " iterations.\nFirst Factor fit: ", beta_fit, "\nSecond Factor fit: ", gamma_fit, "\n", sep = "" ) #nolint
 
-  if (beta_fit > 0.95 && gamma_fit < 0.20 && fit_model[[3]] < 50) {
+  if (beta_fit > 0.95 && gamma_fit > 0.75 && fit_model[[3]] < 50) {
     cat("#######################################\n")
     cat("Seed found! Use ", seeds_to_test[i], "\n", sep = "")
     break
